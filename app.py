@@ -16,7 +16,6 @@ MODEL_PATH = "mudra_model.keras"
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        # PASTE YOUR GOOGLE DRIVE FILE ID HERE:
         file_id = "1GWSFNzy__WDXoUOvrdxeBrhtHJ8U1wHb"
         url = f"https://drive.google.com/uc?id={file_id}"
         
