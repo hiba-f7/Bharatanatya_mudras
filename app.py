@@ -8,11 +8,20 @@ st.set_page_config(page_title="Mudra Recognition", page_icon="🪷")
 
 
 CLASS_NAMES = ["Musti", "Pataka", "Sikhara", "Simhamukha", "Trisula"]
+MODEL_PATH = "mudra_model.keras"
 
-#Trained Model
+
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("mudra_model.keras")
+    if not os.path.exists(MODEL_PATH):
+        # PASTE YOUR GOOGLE DRIVE FILE ID HERE:
+        file_id = "1GWSFNzy__WDXoUOvrdxeBrhtHJ8U1wHb"
+        url = f"https://drive.google.com/uc?id={file_id}"
+        
+        with st.spinner("Downloading trained model weights... please wait."):
+            gdown.download(url, MODEL_PATH, quiet=False)
+            
+    return tf.keras.models.load_model(MODEL_PATH)
 
 model = load_model()
 
